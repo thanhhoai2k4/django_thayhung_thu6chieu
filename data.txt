@@ -1,0 +1,26 @@
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `description`, `price`, `cate_id`, `created_at`) VALUES
+(1, 'BIG SS LONG TEE', 'cimeng dài', 150000.00, 1, '2025-12-13 00:27:08'),
+(2, 'MSS STRIPE LONG TEE', 'Sọc dài nhí xanh S', 23000.00, 1, '2025-12-13 00:27:08'),
+(3, 'BSS STRIPE LONG TEE\r\n', 'Offwhite L', 200000.00, 1, '2025-12-13 00:27:08'),
+(4, 'LS BOXY LONG TEE (đen)\r\n', 'Long Tee LS đen XS', 800000.00, 1, '2025-12-13 00:27:08'),
+(5, 'LS BOXY LONG TEE (trắng)', 'Long Tee LS ngọctrinh XS', 230000.00, 1, '2025-12-13 00:27:08'),
+(6, 'KNIT TEE', 'Bee knit M waffle', 400000.00, 1, '2025-12-13 00:27:08'),
+(7, 'NINE TEE', 'Mô tả áo thun 07', 700000.00, 1, '2025-12-13 00:27:08'),
+(8, 'DOC TEE', 'Mô tả áo thun 08', 500000.00, 1, '2025-12-13 00:27:08'),
+(9, 'BALL TEE', 'Mô tả áo thun 09', 800000.00, 1, '2025-12-13 00:27:08'),
+(10, 'MID TEE', 'Mô tả áo thun 10', 500000.00, 1, '2025-12-13 00:27:08'),
+(11, 'DNA TEE 3D', 'Mô tả áo thun 11', 600000.00, 1, '2025-12-13 00:27:20'),
+(12, 'DNA TEE 1D', 'Mô tả áo thun 12', 300000.00, 1, '2025-12-13 00:27:20'),
+(13, 'BIG STRIPE SS TEE', 'Mô tả áo thun 13', 250000.00, 1, '2025-12-13 00:27:20'),
+(14, 'MOUSE TEE', 'Mô tả áo thun 14', 400000.00, 1, '2025-12-13 00:27:20'),
+(15, 'SMI TEE', 'Mô tả áo thun 15', 300000.00, 1, '2025-12-13 00:27:20'),
+(16, 'SPIDER BABY/BOXY TEE (xám)', 'Mô tả áo thun 16', 600000.00, 1, '2025-12-13 00:27:20'),
+(17, 'SPIDER BABY/BOXY TEE (đen)', 'Mô tả áo thun 17', 650000.00, 1, '2025-12-13 00:27:20'),
+(18, 'LOGO POLO (bò)', 'Mô tả áo thun 18', 230000.00, 1, '2025-12-13 00:27:20'),
+(19, 'LOGO POLO (trắng)', 'Mô tả áo thun 19', 230000.00, 1, '2025-12-13 00:27:20'),
+(20, 'LOGO POLO (đen)', 'Mô tả áo thun 20', 500000.00, 1, '2025-12-13 00:27:20');
+
+-- --------------------------------------------------------
