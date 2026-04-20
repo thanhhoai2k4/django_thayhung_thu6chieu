@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
-from .models import Product, ProductImage
+from .models import Product, ProductImage, ProductStock
 
 
 # ─── API 1: Lấy danh sách tất cả sản phẩm ────────────────────────────────────
@@ -57,4 +57,37 @@ def get_item_by_name(request):
         'keyword': keyword,
         'count': len(result),
         'data': result,
-    })
+    })
+
+
+# ─── API 5: Lấy danh sách theo product_id và size_id ────────────────────────
+def get_stock_by_product_and_size(request):
+    """GET /api/stock/search/?product_id=<id>&size_id=<id> - Lấy danh sách theo size và product id"""
+    product_id = request.GET.get('product_id')
+    size_id = request.GET.get('size_id')
+
+    if not product_id or not size_id:
+        return JsonResponse(
+            {'status': 'error', 'message': 'Thieu tham so "product_id" hoac "size_id". VD: /api/stock/search/?product_id=1&size_id=2'},
+            status=400
+        )
+
+    try:
+        product_id = int(product_id)
+        size_id = int(size_id)
+    except ValueError:
+        return JsonResponse(
+            {'status': 'error', 'message': 'Tham so "product_id" va "size_id" phai la so nguyen.'},
+            status=400
+        )
+
+    stocks = ProductStock.objects.filter(product_id=product_id, size_id=size_id).values()
+    result = list(stocks)
+
+    return JsonResponse({
+        'status': 'success',
+        'product_id': product_id,
+        'size_id': size_id,
+        'count': len(result),
+        'data': result,
+    })
