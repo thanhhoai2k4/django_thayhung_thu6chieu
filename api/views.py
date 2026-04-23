@@ -3,6 +3,10 @@ from django.shortcuts import get_object_or_404
 from .models import Product, ProductImage, ProductStock
 
 
+def home(request):
+    return JsonResponse({'message': 'Welcome to the Product API!'})
+
+
 # ─── API 1: Lấy danh sách tất cả sản phẩm ────────────────────────────────────
 def get_products(request):
     """GET /api/products/ - Trả về toàn bộ sản phẩm"""

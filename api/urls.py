@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path("", views.home, name="home"),
     # API 1: Lấy toàn bộ sản phẩm
     path('products/', views.get_products, name='get_products'),
 
