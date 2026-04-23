@@ -1,5 +1,7 @@
+import json
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from .models import Product, ProductImage, ProductStock
 
 
@@ -95,3 +97,44 @@ def get_stock_by_product_and_size(request):
         'count': len(result),
         'data': result,
     })
+
+
+# ─── API 6: Thêm sản phẩm ───────────────────────────────────────────────────
+@csrf_exempt
+def add_product(request):
+    """POST /api/products/add/ - Thêm sản phẩm mới"""
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            description = data.get('description', '')
+            price = data.get('price')
+            cate_id = data.get('cate_id')
+
+            if not name or not price:
+                return JsonResponse({'status': 'error', 'message': 'Thiếu tên hoặc giá sản phẩm.'}, status=400)
+
+            product = Product.objects.create(
+                name=name,
+                description=description,
+                price=price,
+                cate_id=cate_id
+            )
+            return JsonResponse({'status': 'success', 'message': 'Thêm sản phẩm thành công', 'product_id': product.id})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Phương thức không được hỗ trợ. Dùng POST.'}, status=405)
+
+
+# ─── API 7: Xóa sản phẩm ───────────────────────────────────────────────────
+@csrf_exempt
+def delete_product(request, product_id):
+    """DELETE /api/products/<int:product_id>/delete/ - Xóa sản phẩm"""
+    if request.method == 'DELETE':
+        try:
+            product = get_object_or_404(Product, id=product_id)
+            product.delete()
+            return JsonResponse({'status': 'success', 'message': 'Xóa sản phẩm thành công'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Phương thức không được hỗ trợ. Dùng DELETE.'}, status=405)

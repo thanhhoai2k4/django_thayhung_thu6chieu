@@ -17,4 +17,10 @@ urlpatterns = [
 
     # API 5: Tìm theo product_id và size_id  →  GET /api/stock/search/?product_id=1&size_id=2
     path('stock/search/', views.get_stock_by_product_and_size, name='get_stock_by_product_and_size'),
+
+    # API 6: Thêm sản phẩm
+    path('products/add/', views.add_product, name='add_product'),
+
+    # API 7: Xóa sản phẩm
+    path('products/<int:product_id>/delete/', views.delete_product, name='delete_product'),
 ]
